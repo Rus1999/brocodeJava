@@ -1,8 +1,9 @@
-import java.io.FileNotFoundException;
+//must be on the separate default package of the project
+package serialization;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.ObjectStreamClass;
 
 public class Main {
 
@@ -25,6 +26,7 @@ public class Main {
 		// 5.out.writeObject(objectName)
 		// 6.out.close(); fileOut.close();
 		
+		
 		User user = new User();
 		
 		user.name = "Rus";
@@ -37,6 +39,10 @@ public class Main {
 		fileOut.close();
 		
 		System.out.println("Object info saved!");
+	
+		//unique number that calculated must be same when deserialization
+		long serialVersionUID = ObjectStreamClass.lookup(user.getClass()).getSerialVersionUID();
+		System.out.println(serialVersionUID);
 	}
 
 }
